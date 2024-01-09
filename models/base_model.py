@@ -9,7 +9,7 @@ class BaseModel:
         """
         self.id = uuid4()
         self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.updated_at = self.created_at
 
     def __str__(self):
         """"
@@ -41,8 +41,9 @@ class BaseModel:
 
 
 model = BaseModel()
-model.name = "User"
-print(model.__dict__)
-print("Custom Dict")
-my_model = model.to_dict()
-print(my_model)
+print(model.__init__())
+# model.name = "User"
+# print(model.__dict__)
+# print("Custom Dict")
+# my_model = model.to_dict()
+# print(my_model)
