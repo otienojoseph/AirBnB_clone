@@ -4,12 +4,24 @@ from datetime import datetime
 from uuid import uuid4
 
 class BaseModel:
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         """
-        self.id = uuid4()
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        date_format = "%Y-%m-%dT%H:%M:%S.%f"
+        if (len(kwargs) != 0):
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key == "created_at":
+                        datetime.strptime(value, date_format)
+                    if key == "updated_at":
+                        datetime.strptime(value, date_format)
+                        datetime.isoformat
+                    setattr(self, key,value)
+
+        else:
+            self.id = uuid4()
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """"
@@ -41,9 +53,8 @@ class BaseModel:
 
 
 model = BaseModel()
-print(model.__init__())
-# model.name = "User"
-# print(model.__dict__)
-# print("Custom Dict")
-# my_model = model.to_dict()
-# print(my_model)
+model.name = "User"
+print(model.__dict__)
+print("Custom Dict")
+my_model = model.to_dict()
+print(my_model)
