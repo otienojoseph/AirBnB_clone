@@ -1,5 +1,6 @@
 from models.base_model import BaseModel
 from datetime import datetime
+from uuid import uuid4
 
 
 import unittest
@@ -32,3 +33,24 @@ class Test__Init__(unittest.TestCase):
     def test_same_datetime_value(self):
         base_model = BaseModel()
         self.assertEqual(base_model.created_at, base_model.updated_at)
+
+    #The created_at and updated at attributes are different when instance is saved
+    def test_base_model_save(self):
+        base_model = BaseModel()
+        original_updated_at = base_model.updated_at
+        base_model.save()
+        self.assertNotEqual(base_model.updated_at, original_updated_at)
+
+    #BaseModel is created with no kwargs
+    def test_init_with_no_arguments(self):
+        obj = BaseModel()
+        self.assertIsNotNone(obj.id)
+        self.assertIsNotNone(obj.created_at)
+        self.assertIsNotNone(obj.updated_at)
+    
+    #BaseModel instance createed with kwargs
+    def test_init_with_keyword_arguments(self):
+        obj = BaseModel(id=uuid4(), created_at=datetime.now(), updated_at=datetime.now())
+        self.assertIsNotNone(obj.id)
+        self.assertIsNotNone(obj.created_at)
+        self.assertIsNotNone(obj.updated_at)
