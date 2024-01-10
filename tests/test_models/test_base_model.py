@@ -50,7 +50,12 @@ class Test__Init__(unittest.TestCase):
     
     #BaseModel instance createed with kwargs
     def test_init_with_keyword_arguments(self):
-        obj = BaseModel(id=uuid4(), created_at=datetime.now(), updated_at=datetime.now())
+        obj = BaseModel(id=uuid4(), created_at="2022-12-01T12:00:00.000000", updated_at="2022-12-01T12:00:00.000000")
         self.assertIsNotNone(obj.id)
         self.assertIsNotNone(obj.created_at)
         self.assertIsNotNone(obj.updated_at)
+    
+    #Raise error when given invalid datetime string
+    def test_init_with_invalid_datetime_string(self):
+        with self.assertRaises(ValueError):
+            BaseModel(created_at="2022-13-01T12:00:00.000000", updated_at="2022-13-01T12:00:00.000000" )

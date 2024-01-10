@@ -51,13 +51,3 @@ class BaseModel:
             if key == "id":
                 final_dict[key] = str(value)
         return(final_dict)
-
-
-# model = BaseModel()
-# print(type(model.created_at))
-# # print(type(datetime.isoformat(model.created_at)))
-# model.name = "User"
-# print(model.__dict__)
-# print("Custom Dict")
-# my_model = model.to_dict()
-# print(my_model)
