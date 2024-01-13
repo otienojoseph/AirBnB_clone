@@ -14,6 +14,7 @@ class BaseModel:
         """
 
         date_format = "%Y-%m-%dT%H:%M:%S.%f"
+
         if (len(kwargs) != 0):
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -29,7 +30,7 @@ class BaseModel:
             self.updated_at = self.created_at
 
     def __str__(self):
-        """"
+        """
         """
 
         return ("[{}] ({}) {}".format(self.__class__.__name__,
@@ -44,7 +45,7 @@ class BaseModel:
     def to_dict(self):
         """
         """
-        
+
         final_dict = {"__class__": self.__class__.__name__}
         for key, value in self.__dict__.items():
             final_dict[key] = value
