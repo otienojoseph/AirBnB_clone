@@ -1,8 +1,6 @@
 from models.base_model import BaseModel
 from datetime import datetime
 from uuid import uuid4
-
-
 import unittest
 
 class Test__Init__(unittest.TestCase):

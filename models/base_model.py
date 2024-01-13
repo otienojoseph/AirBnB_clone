@@ -1,10 +1,14 @@
 #!/usr/bin/python3
+"""Base Model Class"""
 
 from datetime import datetime
 from uuid import uuid4
 
 
 class BaseModel:
+    """
+        Attributes:
+    """
     def __init__(self, *args, **kwargs):
         """
         """
@@ -17,7 +21,7 @@ class BaseModel:
                         datetime.strptime(value, date_format)
                     if key == "updated_at":
                         datetime.strptime(value, date_format)
-                    setattr(self, key,value)
+                    setattr(self, key, value)
 
         else:
             self.id = uuid4()
@@ -28,7 +32,7 @@ class BaseModel:
         """"
         """
 
-        return("[{}] ({}) {}".format(self.__class__.__name__,
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__))
 
     def save(self):
