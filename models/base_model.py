@@ -26,7 +26,7 @@ class BaseModel:
             self.updated_at = self.created_at
 
     def __str__(self):
-        """"
+        """
         """
 
         return("[{}] ({}) {}".format(self.__class__.__name__,
