@@ -10,6 +10,7 @@ class BaseModel:
         """
 
         date_format = "%Y-%m-%dT%H:%M:%S.%f"
+
         if (len(kwargs) != 0):
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -17,7 +18,7 @@ class BaseModel:
                         datetime.strptime(value, date_format)
                     if key == "updated_at":
                         datetime.strptime(value, date_format)
-                    setattr(self, key,value)
+                    setattr(self, key, value)
 
         else:
             self.id = uuid4()
@@ -40,7 +41,7 @@ class BaseModel:
     def to_dict(self):
         """
         """
-        
+
         final_dict = {"__class__": self.__class__.__name__}
         for key, value in self.__dict__.items():
             final_dict[key] = value
