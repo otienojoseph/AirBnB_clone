@@ -1,7 +1,10 @@
 #!/usr/bin/python3
-"""File Storage Class"""
+"""
+    File Storage module contains serialization and desirialization
+    functions
+"""
 
-from base_model import BaseModel
+import json
 
 
 class FileStorage:
@@ -34,11 +37,24 @@ class FileStorage:
             Args:
                 obj (dict) - object to set
         """
-        key = (obj.__class__.__name__ + "." + str(obj.id))
+        key = "{}.{}".format(obj.__class__.__name__, str(obj.id))
         self.__objects[key] = obj.to_dict()
 
+    def save(self):
+        """
+            Serializes self.__object into string
+        """
+        with open(self.__file_path, "w") as file:
+            # serialize the objects
+            json.dump(self.__objects, file)
 
-baseModel = BaseModel()
-model = FileStorage()
-model.new(baseModel)
-print(model.all())
+    def reload(self):
+        """
+            Deserialize string into self.__object
+        """
+        try:
+            with open(self.__file_path, "r") as file:
+                line = file.read()
+                self.__objects = json.loads(line)
+        except FileNotFoundError as e:
+            pass
