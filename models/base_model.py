@@ -1,14 +1,25 @@
 #!/usr/bin/python3
+"""
+    This module contains Base Class functions for initializing
+    the Base class
+"""
 
 from datetime import datetime
 from uuid import uuid4
 
 
 class BaseModel:
-    def __init__(self, *args, **kwargs):
-        """
-        """
+    """
+        A class for initializing BaseModel functionality
 
+        Attributes:
+            args (list): List of arguments passed
+            kwargs (dict): Dictionary structure containing key/value
+            arguments
+    """
+
+    def __init__(self, *args, **kwargs):
+        """Initialize BaseModel class"""
         date_format = "%Y-%m-%dT%H:%M:%S.%f"
 
         if (len(kwargs) != 0):
@@ -26,22 +37,16 @@ class BaseModel:
             self.updated_at = self.created_at
 
     def __str__(self):
-        """
-        """
-
+        """Return string representation of the object"""
         return("[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__))
 
     def save(self):
-        """
-        """
-
+        """Updates the updated_at time when saving"""
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        """
-        """
-
+        """Returns a dictionary object"""
         final_dict = {"__class__": self.__class__.__name__}
         for key, value in self.__dict__.items():
             final_dict[key] = value
