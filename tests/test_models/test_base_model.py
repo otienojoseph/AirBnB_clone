@@ -4,6 +4,7 @@ from models.base_model import BaseModel
 from datetime import datetime
 from uuid import uuid4
 import unittest
+from models import storage
 
 
 class Test__Init__(unittest.TestCase):
@@ -65,3 +66,8 @@ class Test__Init__(unittest.TestCase):
         with self.assertRaises(ValueError):
             BaseModel(created_at="2022-13-01T12:00:00.000000",
                       updated_at="2022-13-01T12:00:00.000000")
+
+    # BaseModel object is reloaded successfully
+    def test_base_model_reload(self):
+        storage.reload()
+        self.assertIsNotNone(storage)

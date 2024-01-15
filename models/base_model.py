@@ -6,6 +6,7 @@
 
 from datetime import datetime
 from uuid import uuid4
+from models import storage
 
 
 class BaseModel:
@@ -17,7 +18,6 @@ class BaseModel:
             kwargs (dict): Dictionary structure containing key/value
             arguments
     """
-
     def __init__(self, *args, **kwargs):
         """Initialize BaseModel class"""
         date_format = "%Y-%m-%dT%H:%M:%S.%f"
@@ -35,6 +35,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new(self)
 
     def __str__(self):
         """Return string representation of the object"""
@@ -44,6 +45,7 @@ class BaseModel:
     def save(self):
         """Updates the updated_at time when saving"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Returns a dictionary object"""
