@@ -1,12 +1,8 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
-"""Base Model Class"""
-=======
 """
     This module contains Base Class functions for initializing
     the Base class
 """
->>>>>>> 2c9cbb90a48ed6b780a9b70f68f023909c6f4853
 
 from datetime import datetime
 from uuid import uuid4
@@ -15,15 +11,7 @@ from models import storage
 
 class BaseModel:
     """
-<<<<<<< HEAD
-        Attributes:
-    """
-    def __init__(self, *args, **kwargs):
-        """
-        """
-=======
         A class for initializing BaseModel functionality
->>>>>>> 2c9cbb90a48ed6b780a9b70f68f023909c6f4853
 
         Attributes:
             args (list): List of arguments passed
@@ -50,15 +38,8 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-<<<<<<< HEAD
-        """
-        """
-
-        return ("[{}] ({}) {}".format(self.__class__.__name__,
-=======
         """Return string representation of the object"""
         return("[{}] ({}) {}".format(self.__class__.__name__,
->>>>>>> 2c9cbb90a48ed6b780a9b70f68f023909c6f4853
                                      self.id, self.__dict__))
 
     def save(self):
