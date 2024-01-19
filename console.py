@@ -135,21 +135,21 @@ class HBNBCommand(cmd.Cmd):
                 cls = globals()[args[0]]
                 if len(args) < 2:
                     print("** instance id missing **")
-                if len(args) == 2:
+                elif len(args) == 2:
                     print("** attribute name missing **")
-                if len(args) == 3:
+                elif len(args) == 3:
                     print("** value missing **")
-
-                storage.reload()
-                data_dict = storage.all()
-                key_id = args[0] + "." + args[1]
-
-                if data_dict.get(key_id) is not None:
-                    data_dict[key_id][args[2]] = args[3]
                 else:
-                    print("** instance id missing **")
+                    storage.reload()
+                    data_dict = storage.all()
+                    key_id = args[0] + "." + args[1]
 
-                storage.save()
+                    if data_dict.get(key_id) is not None:
+                        data_dict[key_id][args[2]] = args[3]
+                    else:
+                        print("** no instance found **")
+
+                    storage.save()
 
             except KeyError:
                 print("** class doesn't exist **")
