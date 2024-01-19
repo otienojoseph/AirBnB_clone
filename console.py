@@ -56,7 +56,8 @@ class HBNBCommand(cmd.Cmd):
                     key_id = args[0] + "." + args[1]
 
                     if data_dict.get(key_id) is not None:
-                        print(data_dict[key_id])
+                        model = cls(data_dict[key_id])
+                        print(model.__str__())
                     else:
                         print("** no instance found **")
             except KeyError:
