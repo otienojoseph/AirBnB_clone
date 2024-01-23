@@ -34,6 +34,8 @@
 	flex-direction: column;
 	justify-content: center;
 	padding-inline: 20px;
+	position: relative;
+	cursor: pointer;
 }
 
 .locations {
@@ -58,4 +60,31 @@
 .locations h4 {
 	font-weight: 400;
 	font-size: 14px;
+}
+
+.popover {
+	list-style: none;
+	background-color: #fafafa;
+	width: 100%;
+	border: 1px solid #dddddd;
+	position: absolute;
+	left: 0;
+	top: 4.4rem;
+	display: none;
+}
+
+.popover h2 {
+	font-size: 16px;
+}
+
+.popover li {
+	padding: 0.4rem 1rem;
+}
+
+.popover li p {
+	padding-block: 0.2rem;
+}
+
+.locations .popover p {
+	padding-inline: 1.2rem;
 }
